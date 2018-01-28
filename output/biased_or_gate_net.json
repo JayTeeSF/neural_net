@@ -1,0 +1,311 @@
+{
+  "bias_enabled": true,
+  "neurons": [
+    {
+      "neuron": "Layer#0-neuron#0",
+      "output": 1,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#0-neuron#1",
+      "output": 1,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#0-(bias)neuron#2",
+      "output": 1,
+      "gradient": -0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#1-neuron#0",
+      "output": 0.9695071275631062,
+      "gradient": 1.0758092586629892e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#0-neuron#0",
+          "weight": 2.4973488206515384,
+          "delta_weight": 0.0002800518829761837
+        },
+        {
+          "connected_neuron": "Layer#0-neuron#1",
+          "weight": 2.544645849333422,
+          "delta_weight": 4.386085052713096e-05
+        },
+        {
+          "connected_neuron": "Layer#0-(bias)neuron#2",
+          "weight": -1.5826998092463125,
+          "delta_weight": 0.0003014529047330263
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#1-neuron#1",
+      "output": 0.9640380310533057,
+      "gradient": 1.180819677152312e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#0-neuron#0",
+          "weight": 2.396418683682842,
+          "delta_weight": 0.0002688236640467918
+        },
+        {
+          "connected_neuron": "Layer#0-neuron#1",
+          "weight": 2.4227358344503225,
+          "delta_weight": 4.358582708501148e-05
+        },
+        {
+          "connected_neuron": "Layer#0-(bias)neuron#2",
+          "weight": -1.5304857349064604,
+          "delta_weight": 0.000289409900720857
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#1-neuron#2",
+      "output": 0.9560191838231907,
+      "gradient": 1.3099644341158294e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#0-neuron#0",
+          "weight": 2.2559830113848243,
+          "delta_weight": 0.0002547402667594725
+        },
+        {
+          "connected_neuron": "Layer#0-neuron#1",
+          "weight": 2.2871822156446866,
+          "delta_weight": 4.276649872879714e-05
+        },
+        {
+          "connected_neuron": "Layer#0-(bias)neuron#2",
+          "weight": -1.4641407902815562,
+          "delta_weight": 0.0002739187484542557
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#1-(bias)neuron#3",
+      "output": 1,
+      "gradient": -0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#0",
+      "output": 0.8864496190866037,
+      "gradient": 5.2514460337432634e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 1.3368661024771489,
+          "delta_weight": 0.00018929796533221371
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 1.249882380740021,
+          "delta_weight": 0.0001868035853452422
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 1.1215676639709078,
+          "delta_weight": 0.0001831376544869154
+        },
+        {
+          "connected_neuron": "Layer#1-(bias)neuron#3",
+          "weight": -1.51829789753348,
+          "delta_weight": 0.00023859091937007996
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#1",
+      "output": 0.8789401792665208,
+      "gradient": 4.962353736621433e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 1.2483454315387112,
+          "delta_weight": 0.00017251537523042967
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 1.1680116567268242,
+          "delta_weight": 0.0001702540060474536
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 1.076390184629526,
+          "delta_weight": 0.00016693102560321323
+        },
+        {
+          "connected_neuron": "Layer#1-(bias)neuron#3",
+          "weight": -1.382905086848563,
+          "delta_weight": 0.00021671441549333392
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#2",
+      "output": 0.883771093413828,
+      "gradient": 5.1578975813202296e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 1.3055816811474603,
+          "delta_weight": 0.00018350454109143693
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 1.2210506353014217,
+          "delta_weight": 0.0001810910376935515
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 1.1051679386526925,
+          "delta_weight": 0.00017754415897711537
+        },
+        {
+          "connected_neuron": "Layer#1-(bias)neuron#3",
+          "weight": -1.4708352407376892,
+          "delta_weight": 0.00023101503532158195
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#3",
+      "output": 0.9171821561086865,
+      "gradient": 5.514665544492929e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 1.639014697632258,
+          "delta_weight": 0.00023501169873375546
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 1.530149566937396,
+          "delta_weight": 0.0002318403729692188
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 1.3784223375749691,
+          "delta_weight": 0.00022717726291819433
+        },
+        {
+          "connected_neuron": "Layer#1-(bias)neuron#3",
+          "weight": -1.9772944534511432,
+          "delta_weight": 0.0002997886815033639
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#4",
+      "output": 0.8924995883593372,
+      "gradient": 5.3990715027163966e-05,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 1.3671009964559744,
+          "delta_weight": 0.00020062663520004298
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 1.2863305460996757,
+          "delta_weight": 0.0001979713539464734
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 1.223495355393522,
+          "delta_weight": 0.00019406851813815785
+        },
+        {
+          "connected_neuron": "Layer#1-(bias)neuron#3",
+          "weight": -1.6186393825273244,
+          "delta_weight": 0.00025352097090830804
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-(bias)neuron#5",
+      "output": 1,
+      "gradient": -0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#3-neuron#0",
+      "output": 0.9831939984890656,
+      "gradient": 0.00028016415837334814,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#2-neuron#0",
+          "weight": 1.8609585686188541,
+          "delta_weight": 0.0006473756478723906
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#1",
+          "weight": 1.6636377404555136,
+          "delta_weight": 0.0006430400296872808
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#2",
+          "weight": 1.7911408912017337,
+          "delta_weight": 0.0006457770401928726
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#3",
+          "weight": 2.589057460505116,
+          "delta_weight": 0.000670818742848175
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#4",
+          "weight": 2.0071486369914844,
+          "delta_weight": 0.0006511929670429254
+        },
+        {
+          "connected_neuron": "Layer#2-(bias)neuron#5",
+          "weight": -4.791788849436912,
+          "delta_weight": 0.0008000254559712324
+        }
+      ]
+    }
+  ]
+}

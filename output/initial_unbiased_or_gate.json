@@ -1,0 +1,236 @@
+{
+  "bias_enabled": false,
+  "neurons": [
+    {
+      "neuron": "Layer#0-neuron#0",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#0-neuron#1",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+
+      ]
+    },
+    {
+      "neuron": "Layer#1-neuron#0",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#0-neuron#0",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#0-neuron#1",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#1-neuron#1",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#0-neuron#0",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#0-neuron#1",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#1-neuron#2",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#0-neuron#0",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#0-neuron#1",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#0",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#1",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#2",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#3",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#2-neuron#4",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#1-neuron#0",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#1",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#1-neuron#2",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        }
+      ]
+    },
+    {
+      "neuron": "Layer#3-neuron#0",
+      "output": 0.0,
+      "gradient": 0.0,
+      "error": 0.0,
+      "activation_function": "sigmoid",
+      "connections": [
+        {
+          "connected_neuron": "Layer#2-neuron#0",
+          "weight": 0.1,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#1",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#2",
+          "weight": 0.13,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#3",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        },
+        {
+          "connected_neuron": "Layer#2-neuron#4",
+          "weight": 0.09,
+          "delta_weight": 0.0
+        }
+      ]
+    }
+  ]
+}
