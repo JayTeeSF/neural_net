@@ -48,6 +48,7 @@ if __FILE__ == $PROGRAM_NAME
   loop do
     #avg_sq_errors = []
     (0..(net.input_sets.size - 1)).each do |idx|
+      start_idx = Time.now.to_f
       current_inputs = net.input_sets[idx]
       warn "idx/inputs: #{idx}/#{current_inputs.inspect}" if print_now && debug
       net.set_inputs(current_inputs)
@@ -74,6 +75,9 @@ if __FILE__ == $PROGRAM_NAME
       if print_now && debug
         warn "\tAverage Squared Error: #{net.average_squared_error(targets[idx])}"
       end
+      end_idx = Time.now.to_f
+      elapsed_idx = end_idx - start_idx
+      warn "First input took #{elapsed_idx}sec(s)" if 0 == idx
     end
     err /= net.input_sets.size
     break if err < max_average_squared_error #avg_sq_errors.all?{|avg| avg <= max_average_squared_error}
