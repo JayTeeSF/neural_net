@@ -11,6 +11,7 @@ if __FILE__ == $PROGRAM_NAME
     net_info = JSON.parse(raw_json)
     #puts "net_info: #{net_info.inspect}"
 
+    debug = net_info["debug"] || false
     bias_enabled = net_info["bias_enabled"] || false
     topology = net_info["topology"]
     warn "Setting up your Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
@@ -26,6 +27,7 @@ if __FILE__ == $PROGRAM_NAME
   else
     warn "Input a json file as the first (and only) arg, in order to speed-up this setup process"
     bias_enabled = false
+    debug = true
     topology = [2,3,5,1]
 
     warn "Setting up your Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
@@ -47,9 +49,9 @@ if __FILE__ == $PROGRAM_NAME
     #avg_sq_errors = []
     (0..(net.input_sets.size - 1)).each do |idx|
       current_inputs = net.input_sets[idx]
-      warn "idx/inputs: #{idx}/#{current_inputs.inspect}" if print_now
+      warn "idx/inputs: #{idx}/#{current_inputs.inspect}" if print_now && debug
       net.set_inputs(current_inputs)
-      if print_now
+      if print_now && debug
         io = ""
         net.inputs.each do |input|
           io << "#{input.keys.first}:  #{input.values.first}\n"
@@ -58,7 +60,7 @@ if __FILE__ == $PROGRAM_NAME
       end
 
       net.feed_forward
-      if print_now
+      if print_now && debug
         io = ""
         net.outputs.each do |output|
           io << "\t=> #{output.keys.first}: #{output.values.first}\n"
@@ -69,7 +71,7 @@ if __FILE__ == $PROGRAM_NAME
       net.back_propagate(targets[idx])
       err += net.average_squared_error(targets[idx])
       #avg_sq_errors << net.average_squared_error(targets[idx])
-      if print_now
+      if print_now && debug
         warn "\tAverage Squared Error: #{net.average_squared_error(targets[idx])}"
       end
     end
@@ -82,7 +84,7 @@ if __FILE__ == $PROGRAM_NAME
       print_now = false
       puts
     end
-    print_now = true if (0 == (loop_idx % 10_000))
+    print_now = true if (0 == (loop_idx % 100_000))
   end
   warn "Done."
 

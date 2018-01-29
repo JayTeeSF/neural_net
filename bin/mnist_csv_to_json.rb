@@ -56,6 +56,7 @@ end
 File.open(json_file_name, "w") {|f|
   f.puts <<-EOTIPTOP
 {
+  "debug": false,
   "bias_enabled": false,
   "topology": [
     784,
