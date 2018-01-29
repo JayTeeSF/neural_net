@@ -1,2 +1,2 @@
-./data/mnist_test*
-./data/mnist_train*
+data/mnist_test.*
+data/mnist_train.*
