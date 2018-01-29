@@ -1,4 +1,4 @@
-Create a .json file, e.g.:
+# Create a .json file, e.g.:
 ./data/or_gate.json
 
 ```
@@ -17,36 +17,45 @@ Create a .json file, e.g.:
 ```
 
 Then run it as a neural net:
+```
 ./bin/neural_net.rb ./data/or_gate.json
+```
 
-# Download MNIST csv(s):
+## Download MNIST csv(s):
+```
   https://pjreddie.com/media/files/mnist_train.csv
   https://pjreddie.com/media/files/mnist_test.csv
+```
 
 
-# Convert MNIST data to a JSON formatted neural net spec:
+Convert MNIST data to a JSON formatted neural net spec:
+```
 ↪ time ./bin/mnist_csv_to_json.rb train
+```
 
-# Train on MNIST data:
+Train on MNIST data:
+```
 ↪ ./bin/neural_net.rb ./data/mnist_train.json
+```
 
-# FIXME: this depends on being able to save the trained net?!
-# Convert MNIST data to a JSON formatted neural net spec:
+FIXME: this depends on being able to save the trained net?!
+Convert MNIST data to a JSON formatted neural net spec:
+```
 ↪ time ./bin/mnist_csv_to_json.rb test
+```
 
-# Test MNIST 
+Test MNIST 
+```
 ↪ ./bin/neural_net.rb ./data/mnist_test.json
+```
 
-# TODO:
+## TODO:
   update input to be closer to output, i.e.:
   ./output/initial_unbiased_or_gate.json
 
-  a)
-  # include (optional) connections & weights
-  # that way a trained net can be saved and restored for use later...
+  a) include (optional) connections & weights
+  that way a trained net can be saved and restored for use later...
 
-  b)
-  # activation function specified (by name)
+  b) activation function specified (by name)
 
-  c)
-  # visualize output (not just JSON, but html/css OR canvas)
+  c) visualize output (not just JSON, but html/css OR canvas)
