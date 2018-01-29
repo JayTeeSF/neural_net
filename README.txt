@@ -1,6 +1,21 @@
 Create a .json file, e.g.:
 ./data/or_gate.json
 
+```
+  {
+    "bias_enabled": false,
+    "topology": [ 2, 3, 5, 1 ],
+    "max_avg_sq_error": 0.001,
+    "inputs": [
+      [ 0, 0 ],
+      [ 0, 1 ],
+      [ 1, 0 ],
+      [ 1, 1 ]
+    ],
+    "targets": [ 0, 1, 1, 1 ]
+  }
+```
+
 Then run it as a neural net:
 ./bin/neural_net.rb ./data/or_gate.json
 
@@ -9,13 +24,17 @@ Then run it as a neural net:
   https://pjreddie.com/media/files/mnist_test.csv
 
 
-# Train on MNIST data:
+# Convert MNIST data to a JSON formatted neural net spec:
 ↪ time ./bin/mnist_csv_to_json.rb train
+
+# Train on MNIST data:
 ↪ ./bin/neural_net.rb ./data/mnist_train.json
 
 # FIXME: this depends on being able to save the trained net?!
-# Test MNIST 
+# Convert MNIST data to a JSON formatted neural net spec:
 ↪ time ./bin/mnist_csv_to_json.rb test
+
+# Test MNIST 
 ↪ ./bin/neural_net.rb ./data/mnist_test.json
 
 # TODO:
