@@ -1,0 +1,24 @@
+{
+  "bias_enabled": false,
+  "topology": [
+    784,
+    15,
+    10
+  ],
+  "max_avg_sq_error": 0.001,
+  "inputs": [
+    [
+      ...
+    ],
+      ...784 inputs
+    [
+      ...
+    ],
+  ],
+  "targets": [
+    7,
+    2,
+    8,
+    ...bunch of digits 0..9
+  ]
+}
