@@ -11,6 +11,7 @@ if __FILE__ == $PROGRAM_NAME
     net_info = JSON.parse(raw_json)
     #puts "net_info: #{net_info.inspect}"
 
+    one_time = net_info["one_time"] || false
     debug = net_info["debug"] || false
     bias_enabled = net_info["bias_enabled"] || false
     topology = net_info["topology"]
@@ -23,17 +24,20 @@ if __FILE__ == $PROGRAM_NAME
     fail("Invalid max_average_squared_error value") if max_average_squared_error.nil?
 
     warn "DEBUG - output node-count: #{net.output_layer.size}; #{net.output_layer.map(&:name).inspect}"
+    target_labels = net_info["target_labels"] || []
     targets = net_info["targets"]
   else
     warn "Input a json file as the first (and only) arg, in order to speed-up this setup process"
     bias_enabled = false
     debug = true
+    one_time = false
     topology = [2,3,5,1]
 
     warn "Setting up your Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
     net = Net.new(bias_enabled, topology)
     net.input_sets = [[0,0],[0,1],[1,0],[1,1]]
     max_average_squared_error = 0.01
+    target_labels = []
     targets = [0,1,1,1]
   end
 
@@ -50,7 +54,8 @@ if __FILE__ == $PROGRAM_NAME
     (0..(net.input_sets.size - 1)).each do |idx|
       start_idx = Time.now.to_f
       current_inputs = net.input_sets[idx]
-      warn "idx/inputs: #{idx}/#{current_inputs.inspect}" if print_now && debug
+      current_target_label = target_labels[idx]
+      warn "idx/inputs => expecting: #{idx}/#{current_inputs.inspect} => #{current_target_label}" if print_now && debug
       net.set_inputs(current_inputs)
       if print_now && debug
         io = ""
@@ -80,7 +85,7 @@ if __FILE__ == $PROGRAM_NAME
       warn "First input took #{elapsed_idx}sec(s)" if 0 == idx
     end
     err /= net.input_sets.size
-    break if err < max_average_squared_error #avg_sq_errors.all?{|avg| avg <= max_average_squared_error}
+    break if one_time || err < max_average_squared_error #avg_sq_errors.all?{|avg| avg <= max_average_squared_error}
     loop_idx += 1
     print "." unless print_now
     puts() if (0 == (loop_idx % 1_000))

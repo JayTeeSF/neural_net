@@ -57,6 +57,7 @@ File.open(json_file_name, "w") {|f|
   f.puts <<-EOTIPTOP
 {
   "debug": false,
+  "one_time": true,
   "bias_enabled": false,
   "topology": [
     784,
@@ -86,12 +87,11 @@ File.open(json_file_name, "w") {|f|
 
   f.puts <<-EOMID
   ],
-  "targets": [
   EOMID
-
-  f.puts "[\n" + expected_digits.map{|d| to_target(d).join(",\n") }.join("\n],\n[\n") + "\n]"
+  f.puts '"target_labels": [' + "[\n" + expected_digits.join(",\n") + "\n] ],"
+  f.puts '"targets": [' + "[\n" + expected_digits.map{|d| to_target(d).join(",\n") }.join("\n],\n[\n") + "\n] ]"
   f.puts <<-EOBOTTOM
-  ]}
+  }
   EOBOTTOM
 }
 

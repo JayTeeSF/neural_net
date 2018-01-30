@@ -16,6 +16,7 @@
   }
 ```
 
+
 Then run it as a neural net:
 ```
 ./bin/neural_net.rb ./data/or_gate.json
@@ -27,11 +28,12 @@ Then run it as a neural net:
   https://pjreddie.com/media/files/mnist_test.csv
 ```
 
-
 Convert MNIST data to a JSON formatted neural net spec:
 ```
 ↪ time ./bin/mnist_csv_to_json.rb train
 ```
+
+![alt text](https://github.com/JayTeeSF/neural_net/raw/master/data/mnist_0-9.png "Example of the MNIST handwritten digits")
 
 Train on MNIST data:
 ```
