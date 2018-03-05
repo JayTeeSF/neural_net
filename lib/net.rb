@@ -1,9 +1,17 @@
 require_relative "neuron"
+require_relative "activation_function"
 
 require 'json'
 class Net
   attr_accessor :input_sets
-  def initialize(bias_enabled=false, *topology)
+  def initialize(bias_enabled=false, activation_function_name=nil, *topology)
+    if activation_function_name
+      if ActivationFunction.respond_to?(activation_function_name)
+        activation_function_map = ActivationFunction.send(activation_function_name)
+      end
+    end
+    activation_function_map ||= nil
+
     @bias_enabled = bias_enabled
     clear_input_sets
     @layers = []
@@ -13,12 +21,12 @@ class Net
       layer = []
       previous_layer = @layers[-1]
       (0..(num_neurons - 1)).each do |n|
-        opts = {name: "Layer##{layer_idx}-neuron##{n}"}
+        opts = {name: "Layer##{layer_idx}-neuron##{n}", activation_function_map: activation_function_map}
         layer << Neuron.new(previous_layer || [], opts)
       end
       if @bias_enabled
         unless layer_idx == last_layer_idx
-          opts = {name: "Layer##{layer_idx}-(bias)neuron##{num_neurons}"}
+          opts = {name: "Layer##{layer_idx}-(bias)neuron##{num_neurons}", activation_function_map: activation_function_map}
           layer << Neuron.new([], opts) # bias-neuron that always returns 1, as part of every layer (except last-layer)
         end
       end

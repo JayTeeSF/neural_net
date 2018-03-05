@@ -3,6 +3,17 @@
 require_relative "../lib/net"
 
 if __FILE__ == $PROGRAM_NAME
+
+  def to_ascii(inputs)
+    output = inputs.each_slice(28).map { |row|
+      row.map { |darkness|
+        darkness > 128 ? "X" : " "
+    }.join
+    }.join("\n")
+
+    output
+  end
+
   net = nil
   # FIXME: read-in data from some JSON file or stream...
   if ARGV.first && File.exist?(ARGV.first)
@@ -14,9 +25,10 @@ if __FILE__ == $PROGRAM_NAME
     one_time = net_info["one_time"] || false
     debug = net_info["debug"] || false
     bias_enabled = net_info["bias_enabled"] || false
+    activation_function = net_info["activation_function"] || "sigmoid"
     topology = net_info["topology"]
-    warn "Setting up your Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
-    net = Net.new(bias_enabled, topology)
+    warn "Setting up your (#{activation_function}) Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
+    net = Net.new(bias_enabled, activation_function, topology)
 
     net.input_sets = net_info["inputs"]
 
@@ -29,12 +41,13 @@ if __FILE__ == $PROGRAM_NAME
   else
     warn "Input a json file as the first (and only) arg, in order to speed-up this setup process"
     bias_enabled = false
+    activation_function = "sigmoid"
     debug = true
     one_time = false
     topology = [2,3,5,1]
 
-    warn "Setting up your Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
-    net = Net.new(bias_enabled, topology)
+    warn "Setting up your (#{activation_function}) Neural Net w/ the following topology (i.e. number of neurons per layer): #{topology.inspect}"
+    net = Net.new(bias_enabled, activation_function, topology)
     net.input_sets = [[0,0],[0,1],[1,0],[1,1]]
     max_average_squared_error = 0.01
     target_labels = []
@@ -47,6 +60,7 @@ if __FILE__ == $PROGRAM_NAME
   warn "Let the training begin..."
   loop_idx = 0
   print_now = true
+  first_input = true
   err = 0
   # FIXME: figure-out how to display the net (i.e. it's adjusting weights)...
   loop do
@@ -55,7 +69,7 @@ if __FILE__ == $PROGRAM_NAME
       start_idx = Time.now.to_f
       current_inputs = net.input_sets[idx]
       current_target_label = target_labels[idx]
-      warn "idx/inputs => expecting: #{idx}/#{current_inputs.inspect} => #{current_target_label}" if print_now && debug
+      warn "idx/inputs: #{idx}/#{current_inputs.inspect}" if print_now && debug
       net.set_inputs(current_inputs)
       if print_now && debug
         io = ""
@@ -66,11 +80,16 @@ if __FILE__ == $PROGRAM_NAME
       end
 
       net.feed_forward
-      if print_now && debug
+      if debug
+      #if print_now && debug
         io = ""
         net.outputs.each do |output|
           io << "\t=> #{output.keys.first}: #{output.values.first}\n"
         end
+        io << "\t\t=> #{current_target_label}\n"
+        # FIXME: move to_ascii into the current_target_label value that's stored in the json
+        # this method is only really useful for MNIST...
+        io << to_ascii(current_inputs)
         warn io
       end
 
@@ -82,12 +101,15 @@ if __FILE__ == $PROGRAM_NAME
       end
       end_idx = Time.now.to_f
       elapsed_idx = end_idx - start_idx
-      warn "First input took #{elapsed_idx}sec(s)" if 0 == idx
+      if first_input
+        warn "First input took #{elapsed_idx}sec(s)"
+        first_input = false
+      end
     end
     err /= net.input_sets.size
     break if one_time || err < max_average_squared_error #avg_sq_errors.all?{|avg| avg <= max_average_squared_error}
     loop_idx += 1
-    print "." unless print_now
+    #print "\t#{err}\t" unless print_now
     puts() if (0 == (loop_idx % 1_000))
     if print_now
       print_now = false

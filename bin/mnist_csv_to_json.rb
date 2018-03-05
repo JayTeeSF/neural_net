@@ -1,26 +1,34 @@
 #!/usr/bin/env ruby
 
+require 'set'
 require 'csv'
 DATA_FILE_FMT = "#{__dir__}/../data/mnist_%s.csv".freeze
 
 if ARGV[0] =~ /help/
-  puts "#{$0} [help|train|test] [<max_avg_err 0.1>] [hidden_layer_sizes 15]"
+  puts "#{$0} [help|train|pretrain|test] [<max_avg_err 0.1>] [hidden_layer_sizes 64]"
+  # apparently 15 doesn't work, but 64 does!!!
   exit
 end
 
-file_type = ARGV.pop
-if file_type =~ /train/
+activation_function = "sigmoid"
+bias_enabled = true
+
+file_type = ARGV.shift
+warn "GOT ARG: >>#{file_type.inspect}<<"
+if "pretrain" == file_type
+  file_type = "pretrain"
+  csv_data_file = DATA_FILE_FMT % "train" # no pre-train csv exists (yet)
+elsif "train" == file_type
   file_type = "train"
-  csv_data_file = DATA_FILE_FMT % "train"
-else
-  file_type = "test"
-  csv_data_file = DATA_FILE_FMT % "test"
+  csv_data_file = DATA_FILE_FMT % file_type
+elsif "test" == file_type
+  csv_data_file = DATA_FILE_FMT % file_type
 end
 
-max_avg_err = (ARGV.pop || 0.1).to_f
+max_avg_err = (ARGV.shift || 0.1).to_f
 hidden_layer_sizes = ARGV
 if hidden_layer_sizes.empty?
-  hidden_layer_sizes = [15]
+  hidden_layer_sizes = [64]
 end
 
 warn "Using the '%s' data file: #{csv_data_file}" % file_type
@@ -56,9 +64,10 @@ end
 File.open(json_file_name, "w") {|f|
   f.puts <<-EOTIPTOP
 {
-  "debug": false,
-  "one_time": true,
-  "bias_enabled": false,
+  "debug": #{"pretrain" == file_type},
+  "one_time": #{"pretrain" != file_type},
+  "activation_function": "#{activation_function}",
+  "bias_enabled": #{bias_enabled},
   "topology": [
     784,
   EOTIPTOP
@@ -72,13 +81,24 @@ File.open(json_file_name, "w") {|f|
   "inputs": [
   EOTOP
 
+  one_of_each_digit = Set.new([])
   expected_digits = []
   first_time = true
   CSV.foreach(csv_data_file) do |row|
+    expected_digit = row[0]
+    if "pretrain" == file_type
+      if 10 == one_of_each_digit.size
+        break
+      end
+      if one_of_each_digit.include?(expected_digit)
+        next
+      end
+      one_of_each_digit << expected_digit
+    end
     if !first_time
       f.puts ","
     end
-    expected_digits << row[0]
+    expected_digits << expected_digit
     f.print "[" + row[1..-1].join(", ") + "]"
     if first_time
       first_time = false
@@ -88,8 +108,8 @@ File.open(json_file_name, "w") {|f|
   f.puts <<-EOMID
   ],
   EOMID
-  f.puts '"target_labels": [' + "[\n" + expected_digits.join(",\n") + "\n] ],"
-  f.puts '"targets": [' + "[\n" + expected_digits.map{|d| to_target(d).join(",\n") }.join("\n],\n[\n") + "\n] ]"
+  f.puts '"target_labels": [' +  expected_digits.join(",\n") + "],"
+  f.puts '"targets": [' + "[\n" + expected_digits.map{|d| to_target(d).map(&:to_f).join(",\n") }.join("\n],\n[\n") + "\n] ]"
   f.puts <<-EOBOTTOM
   }
   EOBOTTOM
