@@ -30,10 +30,15 @@ Then run it as a neural net:
 
 Convert MNIST data to a JSON formatted neural net spec:
 ```
-↪ time ./bin/mnist_csv_to_json.rb train
+↪ time ./bin/mnist_csv_to_json.rb pretrain 0.01 64 # quick -- see some quick progress
+↪ time ./bin/mnist_csv_to_json.rb train # final - takes longer
 ```
 
 ![alt text](https://github.com/JayTeeSF/neural_net/raw/master/data/mnist_0-9.png "Example of the MNIST handwritten digits")
+
+PreTrain on MNIST data:
+(just to see some progress, on recognizing _some_ digits 0 - 9):
+  ./bin/neural_net.rb ./data/mnist_pretrain.json
 
 Train on MNIST data:
 ```
@@ -58,6 +63,6 @@ Test MNIST
   a) include (optional) connections & weights
   that way a trained net can be saved and restored for use later...
 
-  b) activation function specified (by name)
+  ~~b) activation function specified (by name)~~
 
-  c) visualize output (not just JSON, but html/css OR canvas)
+  ~~c) visualize output (not just JSON, but html/css OR canvas)~~
